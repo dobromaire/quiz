@@ -1,3 +1,5 @@
 node_modules
 fichero npm-debug.log
 .gitignore
+quiz.sqlite
+.env
