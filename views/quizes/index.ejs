@@ -1,5 +1,20 @@
-<table>
+<%if (quizes.length ===0) { %>
+	<p>No se han encontrado preguntas con el criterio: <%=criterio%></p>
+<%}
+else
+{%>
+<p><table>
 	<%var i;for (i=0;i<quizes.length;i++) {%>
 		<tr><td><a href="quizes/<%=quizes[i].id%>"><%=quizes[i].pregunta%></a></td></tr>
 	<%}%>
-</table>
+	<!-- Añado el formulario para buscar preguntas, Ejercicio P2P-7 -->
+</table></p>
+<%}%>
+
+<p>Buscador de preguntas</p>
+<p>
+<form method="get" action="/quizes">
+	<input type="text" name="search" value="Texto a buscar"/>
+	<input type="submit" value="Enviar">
+</form>
+</p>

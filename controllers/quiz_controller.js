@@ -44,10 +44,47 @@ exports.answer = function(req, res) {
 //})
 //};
 
-// GET /quizes
-exports.index = function(req,res) {
-	models.Quiz.findAll().then(function(quizes) {
-		res.render('quizes/index.ejs',{quizes:quizes});
-	}).catch(function(error) {next(error); })
-};
+// GET /quizes -> Old before Ejercicio P2P-7
+//exports.index = function(req,res) {
+// models.Quiz.findAll().then(function(quizes) {
+//		res.render('quizes/index.ejs',{quizes:quizes});
+//	}).catch(function(error) {next(error); })
+//};
 
+
+exports.index = function(req, res, next) {
+
+	console.log("hola");
+	console.log(arguments);
+
+	var search = (req.query.search || "");
+	var searchTrue = search;
+
+	if (search === "")  // si no hay pregunta o viene en blanco, sacamos la lista completa. Es como buscar con %
+	{
+		models.Quiz.findAll().then(function(quizes) {
+			res.render('quizes/index.ejs',{quizes:quizes});
+		}).catch(function(error) {next(error); })
+	}
+	else
+	{
+		search = '%' + search.replace(/\s/g,'%') + '%';
+		models.Quiz.findAll({
+			where: {
+				pregunta: {
+					like: search
+				}
+			},
+			order: [['pregunta','ASC']]
+		}).then(function(quizes) {
+			if (quizes.length === 0) // si no hay resultados muestra un mensaje
+			{	
+				res.render('quizes/index.ejs',{quizes:quizes, criterio:searchTrue});
+			}
+			else
+			{
+				res.render('quizes/index.ejs',{quizes:quizes, criterio:''});
+			}
+		}).catch(function(error) {next(error);})
+	}
+};
