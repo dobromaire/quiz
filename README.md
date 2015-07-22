@@ -1,143 +1,96 @@
-EjercicioP2P-6:
+Ejercicio P2P-7
 
-1 - Instalación express-generator:
+Instalo sequelize con npm install --save sequelize@1.7.0
 
-En mi carpeta Proyectos (ya existente), instalo express-generator haciendo:
+Instalo sqlite3 con npm install --save sqlite3@2.2.0
 
-/Proyectos$ npm install express-generator@4.9.0
+Creo la carpeta models y el fichero models/quiz.js
 
-2 - Creación proyecto quiz
+Creo fichero models.js y lo modifico
 
-Creo el proyecto quiz desde mi carpeta de proyectos:
+Modifico controllers/quiz_controller.js
 
-node_modules/express-generator/bin/express --ejs quiz
+Añado quiz.sqlite a .gitignore
 
-3 - Añado el proyecto a GIT
+Me voy a heroku dashboard, me logino con mi email y contraseña y añado Heroku Postgres en Add-ons como "hobby dev", que es gratis. Guardo los cambios.
 
-cd quiz
-git init
+Asigno URL a DATABASE_URL con Heroku dashboard. Para ello selecciono el add-on Heroku Postgres, selecciono la base de datos añadida (es la única) y en la sección de Connection Settings selecciono URL y la visualizo con "Show". Copio la URL y en Heroku dashboard voy a settings y enla variable DATABASE_URL compruebo que la URL es correcta.
 
-4 - Creo el fichero .gitignore añadiendo la carpeta node_modules, .gitignore y el fichero npm-debug.log
+Modifico package.json para añadir sqlite a devDependencies y quitarlo de dependencies
 
-5 - Añado los ficheros al proyecto git con git add .
+Añado la dependencia Postgres con npm install --save pg@4.1.1
 
-6 - Ejecuto el commit con git commit -m "esqueleto express-generator"
+Añado las variables de entorno al despliegue local creando el fichero .env
 
-7 - Ejecuto npm install
+Añado .env a .gitignore
 
-8 - Borro fichero routes/users.js
+Modifico models/models.js para adaptar el modelo al despliegue en Heroku con Postgres
 
-9 - Modifico index.ejs
+Pruebo la aplicacion con foreman start y corrijo los errores
 
-10 - Modifico app.js quitando la carga de users y el app.use de /users
+Añado todos los archivos modificados con git add .
 
-Modifico index.js añadiendo el título quiz
+Genero una nueva versión en la rama master con git commit -m "Despliegue DB en Heroku"
 
-Borro el fichero routers/users.js con rm
+Subo la versión a gitHub con git push origin master
 
-Descomento la línea del favicon en app.js
+Subo la versión a Heroku con git push heroku master
 
-Me voy a www.favicon.cc y descargo el favicon del sol, lo copio a la carpeta quiz/public con el nombre favicon.ico
+Hago los cambios en models\index.js para trabajar con varias preguntas
 
-Ejecuto npm start y me voy a locaalhost:3000 para ver los cambios antes de meterlos en git.
+Hago los cambios en controllers/quiz_controller.js para que trabaje con varias preguntas: métodos show y answer
 
-Ejecuto git add .
+Creo la nueva vista views/quizes/show.ejs para mostrar la pregunta a partir de views/quizes/question.ejs
 
-Ejecuto git commit -m "Primera pagina y favicon"
+Modifico views/quizes/answer.ejs con el enlace a la pregunta
 
-Creo carpeta controllers dentro de quiz
+Modifico controllers/quiz_controller.js para que trabaje con varias preguntas: método index.
 
-Creo fichero quiz_controller.js dentro de controllers e implemento el código.
+Creo la vista views/quizes/index.ejs que mostrará la lista de preguntas
 
-Añado a routes/index.js la importación de quiz_controller.js
+Modifico models/models.js para añadir las otras preguntas
 
-Añado también las dos rutas get a quizes/question y quizes/answer en routes/index.js
+Modifico views/layout.ejs para el enlace a quizes que ahora será quizes.index
 
-Creo la carpeta quizes dentro de views
+Ejecuto con foreman start y pruebo que todo funcione
 
-Creo las vistas answer.ejs y question.ejs en la carpeta de views/quizes
+Añado todos los archivos modificados con git add .
 
-Modifico la página de entrada (views/index.ejs) para añadir el link a empiece a jugar
+Genero una nueva versión en la rama master con git commit -m "Lista de preguntas"
 
-Ejecuto git add .
+Subo la versión a gitHub con git push origin master
 
-Ejecuto git commit -m "Primera pregunta"
+Subo la versión a Heroku con git push heroku master
 
-Creo fichero layout.ejs dentro de la carpeta views
+Modifico controllers/quiz_controller.js para añadir el control de errores en index.
 
-Instalo express-partials con npm install --save express-partials@0.3.0
+Modifico controllers/quiz_controller.js para añadir load
 
-Modifico app.js para importar el middleware y el app.use de express-partials
+Modifico controllers/quiz_controller.js para show y answer con load.
 
-Modifico la vista layout.ejs para añadir el header, el footer y la parte variable
+Modifico routes/index.js para añadir el load.
 
-Modifico la vista index.ejs para dejar sólo la parte que irá en la sección variable de layout.ejs
- 
-Modifico la vista answer.ejs para dejar sólo la parte que irá en la sección variable de layout.ejs
+Añado todos los archivos modificados con git add .
 
-Modifico la vista question.ejs para dejar sólo el formulario
+Genero una nueva versión en la rama master con git commit -m "Autoload"
 
-Ejecuto git add .
+Subo la versión a gitHub con git push origin master
 
-Ejecuto git commit -m "Marco de la aplicación"
+Subo la versión a Heroku con git push heroku master
 
-Modifico public/stylesheets/style.css
+Creo la nueva rama con git branch busquedas
 
-Creo la página public/stylesheets/wide.css
+Me cambio a la rama busquedas con git checkout busquedas
 
-Creo la página public/stylesheets/smartphone.css
+Modifico index.ejs para añadir el formulario
 
-Modifico views/layout.ejs
+Modifico controllers/quiz_controller.js para añadir el tratamiento en index
 
-Ejecuto git add .
+Modifico index.ejs para añadir el aviso de que no se han encontrado preguntas
 
-Ejecuto git commit -m "CSS adptable a móviles"
+Hago git add . y git commit -m "Ejericio P2P-7" para actualizar la rama busquedas
 
-Creo el repositorio quiz en GitHub
-
-Añado el repositorio remoto con git remote add origin https://github.com/dobromaire/quiz.git
-
-Subo mi repositorio local al reposiorio remoto con  git push -u origin master
-
-Creo cuenta en Heorku e instalo Toolbelt con wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
-
-Entro en Heroku con heroku login
-
-Creo aplicación heroku con heroku create
-
-Renombro la aplicación que ha generado Heroku con heroku apps:rename quiz-dobromaire
-
-Creo el fichero Procfile con web: node ./bin/www
-
-Modifico package.json con "engines"
-
-Añado los cambios al repositorio git con git add .
-
-Genero la nueva versión con git commit -m "Despliegue en Heroku"
-
-Lo subo a GitHub con git push -u origin master
-
-Lo subo a Heroku con git push heroku master
-
-Modifico layout.ejs para añadir el footer que apunte a github
-
-Creo la nueva rama con git branch creditos
-
-Me cambio a la rama creditos con git checkout creditos
-
-Modifico views/layout.ejs para añadir el enlace a la barra de navegación
-
-Modifico routes/index.js para añadir el enrutamiento a author.ejs
-
-Añado la vista author.ejs
-
-Pongo un archivo de imagen en la carpeta public/images. El video no lo pondré porque no tengo tiempo
-
-Modifico ligeramente style.css,wide.css y smartphone.css para que se vea bien la imagen en el ordenador. Para poder probarlo como si fuera un móvil ajusto el tamaño de la pantalla.
-
-Hago git add . y git commit para actualizar la rama creditos. Lo hago un par de veces porque tengo que hacer cambios para que se vea bien, una en wide y la otra en wide y smartphone.
-
-Hago git checkout master para pasar a la rama master y git merge creditos para incorporar los cambios de la rama creditos
+Hago git checkout master para pasar a la rama master y git merge busquedas para incorporar los cambios de la rama busquedas
 
 Lo puebo con foreman antes de darlo por bueno.
 
@@ -146,16 +99,4 @@ Lo subo a github con git push -u origin master.
 Lo subo a heroku con git push heroku master.
 
 Añado este README.md al proyecto con git add . y lo vuelvo a subir ea GitHub con git commit -m "añado README.md" y git push -u origin master.
-
-
-
-
-
-
-
-
-
-
-
-
 
