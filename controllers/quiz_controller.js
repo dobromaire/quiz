@@ -123,3 +123,40 @@ exports.create = function(req, res) {
 			.then (function() {res.redirect("/quizes")});
 		} // redireccion http a lista de preguntas
 };
+
+// Get /quizes/edit
+exports.edit =  function(req, res) {
+	var quiz = req.quiz; // autoload de instancioa de quiz
+	res.render("quizes/edit",{quiz: quiz , errors: []});
+};
+
+// PUT /quizes/:id
+exports.update = function(req, res) {
+
+	req.quiz.pregunta = req.body.quiz.pregunta;
+	req.quiz.respuesta = req.body.quiz.respuesta;
+
+	var errors = req.quiz.validate();
+
+	if (errors) {
+		
+		var ArrayErrors = new Array();
+		var i = 0;
+
+		for (var Propiedad in errors)
+		{
+			console.log(errors[Propiedad]);
+			ArrayErrors[i]={message: errors[Propiedad]};
+			i++;
+		}
+
+		res.render("quizes/edit", {quiz:req.quiz, errors: ArrayErrors});
+	}
+	else {
+		// guarda en db los campos pregunta y respuesta de quiz
+			req.quiz
+			.save({fields: ["pregunta","respuesta"]})
+			.then (function() {res.redirect("/quizes");});
+	} // redireccion http a lista de preguntas (URL relativo)
+
+}
