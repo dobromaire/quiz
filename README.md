@@ -1,102 +1,120 @@
-Ejercicio P2P-7
+Modulo 8
 
-Instalo sequelize con npm install --save sequelize@1.7.0
+Añado el controlador de new en controllers/quiz_controller.js
 
-Instalo sqlite3 con npm install --save sqlite3@2.2.0
+Modifico routes/index.js para añadir el enrutamiento a quizes/new
 
-Creo la carpeta models y el fichero models/quiz.js
+Creo la vista views/quizes/new.ejs
 
-Creo fichero models.js y lo modifico
+Creo el formulario views/quizes/_form.ejs
 
-Modifico controllers/quiz_controller.js
+Modifico routes/index.js para añadir el enrutamiento a quizes/create
 
-Añado quiz.sqlite a .gitignore
+Añado el controlador de create en controllers/quiz_controller.js
 
-Me voy a heroku dashboard, me logino con mi email y contraseña y añado Heroku Postgres en Add-ons como "hobby dev", que es gratis. Guardo los cambios.
+Modifico app.js para quitar la propiedad extended del Bodyparser
 
-Asigno URL a DATABASE_URL con Heroku dashboard. Para ello selecciono el add-on Heroku Postgres, selecciono la base de datos añadida (es la única) y en la sección de Connection Settings selecciono URL y la visualizo con "Show". Copio la URL y en Heroku dashboard voy a settings y enla variable DATABASE_URL compruebo que la URL es correcta.
+Añado el enlace a crear pregunta en la vista index.ejs
 
-Modifico package.json para añadir sqlite a devDependencies y quitarlo de dependencies
-
-Añado la dependencia Postgres con npm install --save pg@4.1.1
-
-Añado las variables de entorno al despliegue local creando el fichero .env
-
-Añado .env a .gitignore
-
-Modifico models/models.js para adaptar el modelo al despliegue en Heroku con Postgres
-
-Pruebo la aplicacion con foreman start y corrijo los errores
+Pruebo con Foreman
 
 Añado todos los archivos modificados con git add .
 
-Genero una nueva versión en la rama master con git commit -m "Despliegue DB en Heroku"
+Genero una nueva versión en la rama master con git commit -m "10 - Crear Preguntas"
 
 Subo la versión a gitHub con git push origin master
 
 Subo la versión a Heroku con git push heroku master
 
-Hago los cambios en models\index.js para trabajar con varias preguntas
+Modifico models/quiz.js para añadir la validación en la definición de la tabla
 
-Hago los cambios en controllers/quiz_controller.js para que trabaje con varias preguntas: métodos show y answer
+Modifico controllers/quiz_controller para ejecutar la validación en quizes/create
 
-Creo la nueva vista views/quizes/show.ejs para mostrar la pregunta a partir de views/quizes/question.ejs
+Modifico views/layout.ejs para mostrar los errores
 
-Modifico views/quizes/answer.ejs con el enlace a la pregunta
+Modifico la hoja de estilos public/stylesheets/style.css
 
-Modifico controllers/quiz_controller.js para que trabaje con varias preguntas: método index.
+Modifico controllers/quiz_controller para añadir el parámetro errors en todos los res.render
 
-Creo la vista views/quizes/index.ejs que mostrará la lista de preguntas
+Tengo que modificar quiz_controller para que funcione la validación porque el método validate no tiene then en esta versión
 
-Modifico models/models.js para añadir las otras preguntas
+Modifico app.js para añadir el parámetro errors en res.render
 
-Modifico views/layout.ejs para el enlace a quizes que ahora será quizes.index
+Modifico routes/index.js para añadir el parámetro error en res.render
 
-Ejecuto con foreman start y pruebo que todo funcione
+Pruebo con Foreman
 
 Añado todos los archivos modificados con git add .
 
-Genero una nueva versión en la rama master con git commit -m "Lista de preguntas"
+Genero una nueva versión en la rama master con git commit -m "11 - Validacion de Preguntas"
 
 Subo la versión a gitHub con git push origin master
 
 Subo la versión a Heroku con git push heroku master
 
-Modifico controllers/quiz_controller.js para añadir el control de errores en index.
+Modifico Controllers/quiz_controller.js para añadir el controlador de edit
 
-Modifico controllers/quiz_controller.js para añadir load
+Modifico routes/index.js para añadir la ruta a edit
 
-Modifico controllers/quiz_controller.js para show y answer con load.
+Creo views/quizes/edit.ejs para el formulario de edicion
 
-Modifico routes/index.js para añadir el load.
+instalo method.override con npm install --save method-override
+
+Modifico app.js para importar e instalar method override 
+
+Modifico routes/index.js para añadir la ruta a put
+
+Modifico Controllers/quiz_controller.js para añadir el controlador de update
+
+Modifico la vista views/quizes/index.ejs para añadir el botón de edición a las preguntas
+
+Pruebo con Foreman
 
 Añado todos los archivos modificados con git add .
 
-Genero una nueva versión en la rama master con git commit -m "Autoload"
+Genero una nueva versión en la rama master con git commit -m "12 - Edicion de Preguntas"
 
 Subo la versión a gitHub con git push origin master
 
 Subo la versión a Heroku con git push heroku master
 
-Creo la nueva rama con git branch busquedas
+Modifico views/quizes/index.ejs para añadir el botón de borrar
 
-Me cambio a la rama busquedas con git checkout busquedas
+Modifico routes/index.js para añadir la ruta a delete
 
-Modifico index.ejs para añadir el formulario
+Modifico Controllers/quiz_controller.js para añadir el controlador de destroy
 
-Modifico controllers/quiz_controller.js para añadir el tratamiento en index
+Pruebo con Foreman
 
-Modifico index.ejs para añadir el aviso de que no se han encontrado preguntas
+Añado todos los archivos modificados con git add .
 
-Hago git add . y git commit -m "Ejericio P2P-7" para actualizar la rama busquedas
+Genero una nueva versión en la rama master con git commit -m "12 - Edicion de Preguntas"
 
-Hago git checkout master para pasar a la rama master y git merge busquedas para incorporar los cambios de la rama busquedas
+Subo la versión a gitHub con git push origin master
+
+Subo la versión a Heroku con git push heroku master
+
+Ejercicio PDP - Modulo 8
+
+Modifico controllers/quiz_controller.js para añadir el campo tema en create y update
+
+Modifico models/models.js para añadir más preguntas con su tema
+
+Modifico models/quiz.js para añadir el campo tema a la definicion de la tabla
+
+Modifico views/quizes/_form.ejs para añadir el select tal cual pone en el enunciado y modificarlo para que al recuperar la pregunta aparezca seleccionado el valor según el tema de la pregunta.
+
+Modifico views/quizes/show.ejs para que muestre el valor del campo tema de la pregunta que se está mostrando.
 
 Lo puebo con foreman antes de darlo por bueno.
+
+Hago git add . y git commit -m "Ejericio P2P-8" para actualizar la rama master
 
 Lo subo a github con git push -u origin master.
 
 Lo subo a heroku con git push heroku master.
+
+Hago un reset de la base de datos de Heroku para borrar las preguntas que no tenían tema.
 
 Añado este README.md al proyecto con git add . y lo vuelvo a subir ea GitHub con git commit -m "añado README.md" y git push -u origin master.
 
