@@ -9,12 +9,12 @@ else
 		<td><a href="quizes/<%=quizes[i].id%>/edit"><button>Editar</button></a></td>
 		<td><form method="post" action="quizes/<%=quizes[i].id%>?_method=delete">
 			<input type="submit" onClick="return confirm('Borrar: <%=quizes[i].pregunta%>')"; value="Borrar"/>
-		</form>
+		</form></td></tr>
 	<%}%>
 	<!-- Añado el formulario para buscar preguntas, Ejercicio P2P-7 -->
 </table></p>
 <%}%>
-
+<br>
 <p>Buscador de preguntas</p>
 <p>
 <form method="get" action="/quizes">

@@ -41,13 +41,21 @@ sequelize.sync().then(function() {
 	Quiz.count().then(function (count) {
 		if(count===0) {	// la tabla se inicializa si está vacía
 
-			Quiz.create({pregunta: 'Capital de Líbano',respuesta:'Beirut'});			
+			Quiz.create({pregunta: 'Capital de Líbano',respuesta:'Beirut',tema:"Otro"});			
 
-			Quiz.create({pregunta: 'Capital de Grecia',respuesta:'Atenas'});			
+			Quiz.create({pregunta: 'Inventor del teléfono',respuesta:'Antonio Meucci',tema:"Tecnología"});
 
-			Quiz.create({pregunta: 'Capital de Italia',respuesta:'Roma'});
+			Quiz.create({pregunta: 'Satélite de la Tierra',respuesta:'Luna',tema:"Ciencia"});
 
-			Quiz.create({pregunta: 'Capital de Portugal',respuesta:'Lisboa'}).then(function(){console.log('Base de datos inicializada')});
+			Quiz.create({pregunta: 'Autor de la banda sonora de la película "Superman"',respuesta:'John Williams',tema:"Ocio"});
+
+			Quiz.create({pregunta: 'Autor de "El ingenioso hidalgo Don Quijote de la Mancha"',respuesta:'Miguel de Cervantes',tema:"Humanidades"});
+
+			Quiz.create({pregunta: 'Capital de Grecia',respuesta:'Atenas', tema:"Otro"});			
+
+			Quiz.create({pregunta: 'Capital de Italia',respuesta:'Roma', tema:"Otro"});
+
+			Quiz.create({pregunta: 'Capital de Portugal',respuesta:'Lisboa', tema:"Otro"}).then(function(){console.log('Base de datos inicializada')});
 		};
 	});
 });

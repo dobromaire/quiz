@@ -119,7 +119,7 @@ exports.create = function(req, res) {
 	} else {
 		// guarda en db los campos pregunta y respuesta de quiz
 			quiz
-			.save({fields: ["pregunta","respuesta"]})
+			.save({fields: ["pregunta","respuesta","tema"]})
 			.then (function() {res.redirect("/quizes")});
 		} // redireccion http a lista de preguntas
 };
@@ -135,6 +135,7 @@ exports.update = function(req, res) {
 
 	req.quiz.pregunta = req.body.quiz.pregunta;
 	req.quiz.respuesta = req.body.quiz.respuesta;
+	req.quiz.tema = req.body.quiz.tema;
 
 	var errors = req.quiz.validate();
 
@@ -155,12 +156,13 @@ exports.update = function(req, res) {
 	else {
 		// guarda en db los campos pregunta y respuesta de quiz
 			req.quiz
-			.save({fields: ["pregunta","respuesta"]})
+			.save({fields: ["pregunta","respuesta","tema"]})
 			.then (function() {res.redirect("/quizes");});
 	} // redireccion http a lista de preguntas (URL relativo)
 
 }
 
+//delete /quizes/:id
 exports.destroy = function(req, res) {
 	req.quiz.destroy().then(function() {
 		res.redirect("/quizes");
