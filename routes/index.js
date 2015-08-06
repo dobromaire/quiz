@@ -31,17 +31,17 @@ router.get('/author', function(req, res) {
 	res.render('author', {errors: []});
 });
 
-router.get("/quizes/new", quizController.new);
+router.get("/quizes/new", sessionController.loginRequired, quizController.new);
 
-router.post("/quizes/create", quizController.create);
+router.post("/quizes/create",sessionController.loginRequired, quizController.create);
 
-router.get("/quizes/:quizId(\\d+)/edit", quizController.edit);
+router.get("/quizes/:quizId(\\d+)/edit", sessionController.loginRequired,quizController.edit);
 
-router.put("/quizes/:quizId(\\d+)", quizController.update);
+router.put("/quizes/:quizId(\\d+)", sessionController.loginRequired,quizController.update);
 
-router.get("/quizes/:quizId(\\d+)/edit", quizController.edit);
+router.delete("/quizes/:quizId(\\d+)", sessionController.loginRequired,quizController.destroy);
 
-router.delete("/quizes/:quizId(\\d+)", quizController.destroy);
+// definicion de rutas de comentarios
 
 router.get("/quizes/:quizId(\\d+)/comments/new", commentController.new);
 
