@@ -1,16 +1,19 @@
 var models=require('../models/models.js');
 
-// Autoload - factoriza el codigo si ruta incluye :quizId
-//exports.load = function(req, res, next, quizId) {
-//	models.Quiz.find(quizId).then(
-//		function(quiz) {
-//			if (quiz) {
-//				req.quiz = quiz;
-//				next();				
-//			}
-//			else {next(new Error('No se ha encontrado quizId = ' + quizId));}
-//		}).catch(function(error) {next(error);});
-//};
+// Autoload - factoriza el codigo si ruta incluye :commentId
+exports.load = function(req, res, next, commentId) {
+	models.Comment.find({
+		where: {id: Number(commentId)}
+	}).then(
+		function(comment) {
+			if (comment) {
+				req.comment = comment;
+				next();				
+			}
+			else {next(new Error('No se ha encontrado commentId = ' + commentId));}
+		}
+	).catch(function(error) {next(error);});
+};
 
 
 // GET /quizes/question
@@ -138,4 +141,12 @@ exports.destroy = function(req, res) {
 	req.quiz.destroy().then(function() {
 		res.redirect("/quizes");
 	}).catch(function(error) {next(error)});
+};
+
+exports.publish =  function(req, res) {
+	req.comment.publicado = true;
+
+	req.comment.save({fields: ["publicado"]})
+		.then(function(){res.redirect('/quizes/' + req.params.quizId);})
+		.catch(function(error) {next(error)});
 };
