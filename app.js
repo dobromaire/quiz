@@ -35,10 +35,43 @@ app.use(function(req, res, next) {
     if (!req.path.match(/\/login|\/logout/)) {
         req.session.redir = req.path;
     }
-
+ 
     // hacer visible req.session en las vistas
     res.locals.session = req.session;
     next();
+});
+
+// añadimos middleware para guardar la hora de la transaccion en variables de sesion
+
+app.use(function(req,res,next) {
+
+    if (req.session.user) // la sesion esta loginada, si no lo está no hay que hacer nada
+    {
+     
+        if (!req.session.transTime) {req.session.transTime = new Date();} // guardamos el momento de la transaccion}
+
+        var _ahora = new Date(); // miramos la fecha actual del sistema
+        var _diferencia = _ahora - new Date(req.session.transTime);
+        // sacamos la diferencia en milisegundos de la transaccion actual a la hora de la ultima transaccion
+
+        var _minutosDiferencia = Math.floor(((_diferencia / 1000) / 60));
+        // pasamos la diferencia a minutos
+
+        if (_minutosDiferencia>=1)
+        {
+            
+            delete req.session.user;
+            delete req.session.transTime;
+            res.locals.session = req.session;
+            
+        }
+        else {req.session.transTime=new Date();} // si han pasado menos de dos minutos guardamos el momento de la transaccion
+
+    }
+    else delete req.session.transTime; // por si acaso
+
+    next();
+
 });
 
 app.use('/', routes);
