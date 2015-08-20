@@ -1,120 +1,129 @@
-Modulo 8
+Modulo 9
 
-Añado el controlador de new en controllers/quiz_controller.js
+Creo fichero models/comentarios.js con la definición de la tabla de comentarios (comment)
 
-Modifico routes/index.js para añadir el enrutamiento a quizes/new
+Modifico models/models.js para añadir la tabla de comentarios
 
-Creo la vista views/quizes/new.ejs
+Creo fichero controllers/comment_controller.js que contendrá el controlador de comentarios
 
-Creo el formulario views/quizes/_form.ejs
+Modifico fichero routes/index.js para importar el controlador de comentarios
 
-Modifico routes/index.js para añadir el enrutamiento a quizes/create
+Creo la vista views/comments/new.ejs que será el formulario para la creacion de comentarios
 
-Añado el controlador de create en controllers/quiz_controller.js
+Modifico views/quizes/new.ejs para añadir la parte de crear comentario
 
-Modifico app.js para quitar la propiedad extended del Bodyparser
+Modifico controllers/quiz_controller para añadir el autoload
 
-Añado el enlace a crear pregunta en la vista index.ejs
+Modifico views/quizes/show.ejs para visualizar comentarios
 
-Pruebo con Foreman
+Pruebo con foreman
 
-Añado todos los archivos modificados con git add .
+hago git add . para añadir los ficheros modificados
 
-Genero una nueva versión en la rama master con git commit -m "10 - Crear Preguntas"
-
-Subo la versión a gitHub con git push origin master
-
-Subo la versión a Heroku con git push heroku master
-
-Modifico models/quiz.js para añadir la validación en la definición de la tabla
-
-Modifico controllers/quiz_controller para ejecutar la validación en quizes/create
-
-Modifico views/layout.ejs para mostrar los errores
-
-Modifico la hoja de estilos public/stylesheets/style.css
-
-Modifico controllers/quiz_controller para añadir el parámetro errors en todos los res.render
-
-Tengo que modificar quiz_controller para que funcione la validación porque el método validate no tiene then en esta versión
-
-Modifico app.js para añadir el parámetro errors en res.render
-
-Modifico routes/index.js para añadir el parámetro error en res.render
-
-Pruebo con Foreman
-
-Añado todos los archivos modificados con git add .
-
-Genero una nueva versión en la rama master con git commit -m "11 - Validacion de Preguntas"
+Genero una nueva versión en la rama master con git commit -m "15 - Crear Comentarios"
 
 Subo la versión a gitHub con git push origin master
 
 Subo la versión a Heroku con git push heroku master
 
-Modifico Controllers/quiz_controller.js para añadir el controlador de edit
+Instalo el middleware express-session con npm install --save express-session
 
-Modifico routes/index.js para añadir la ruta a edit
+Modifico app.js para importar express-session y añadir la semilla para cifrar cookies
 
-Creo views/quizes/edit.ejs para el formulario de edicion
+Modifico app.js para guardar el path de la solicitud antes de login/logout
 
-instalo method.override con npm install --save method-override
+Añado las referencias al controlador de sesion en routes/index.js para new, logout, create.
 
-Modifico app.js para importar e instalar method override 
+Creo fichero controllers/session_controller.js y añado el código para new, create,destroy
 
-Modifico routes/index.js para añadir la ruta a put
+Creo fichero controllers/user_controller.js y añado el código para el controlador de autenticar.
 
-Modifico Controllers/quiz_controller.js para añadir el controlador de update
+Modifico views/layout.ejs para añadir el botón de login/logout
 
-Modifico la vista views/quizes/index.ejs para añadir el botón de edición a las preguntas
+Modifico style.css para añadir right
 
-Pruebo con Foreman
+Creo fichero views/sessions/new.ejs para formmulario de registro
 
-Añado todos los archivos modificados con git add .
+Pruebo con foreman start
 
-Genero una nueva versión en la rama master con git commit -m "12 - Edicion de Preguntas"
+hago git add . para añadir los ficheros modificados
 
-Subo la versión a gitHub con git push origin master
-
-Subo la versión a Heroku con git push heroku master
-
-Modifico views/quizes/index.ejs para añadir el botón de borrar
-
-Modifico routes/index.js para añadir la ruta a delete
-
-Modifico Controllers/quiz_controller.js para añadir el controlador de destroy
-
-Pruebo con Foreman
-
-Añado todos los archivos modificados con git add .
-
-Genero una nueva versión en la rama master con git commit -m "12 - Edicion de Preguntas"
+Genero una nueva versión en la rama master con git commit -m "16 - Autenticacion y sesion"
 
 Subo la versión a gitHub con git push origin master
 
 Subo la versión a Heroku con git push heroku master
 
-Ejercicio PDP - Modulo 8
+Modifico views/quizes/index.ejs para que no salgan los botones si no hay sesión
 
-Modifico controllers/quiz_controller.js para añadir el campo tema en create y update
+Modifico controllers/session_controller.js para añadir el middleware.
 
-Modifico models/models.js para añadir más preguntas con su tema
+Modifico routes/index.js para añadir el middleware a las rutas.
 
-Modifico models/quiz.js para añadir el campo tema a la definicion de la tabla
+Pruebo con foreman start
 
-Modifico views/quizes/_form.ejs para añadir el select tal cual pone en el enunciado y modificarlo para que al recuperar la pregunta aparezca seleccionado el valor según el tema de la pregunta.
+hago git add . para añadir los ficheros modificados
 
-Modifico views/quizes/show.ejs para que muestre el valor del campo tema de la pregunta que se está mostrando.
+Genero una nueva versión en la rama master con git commit -m "17 - Autorizacion"
+
+Subo la versión a gitHub con git push origin master
+
+Subo la versión a Heroku con git push heroku master
+
+Modifico models/comment.js para añadir el campo comentario a la tabla
+
+Modifico routes/index.js para añadirle la primitiva get para actualizar el comentario y la llamada al autoload
+
+Añado la accion publish en controllers/comment_controller.js y el autoload
+
+Modifico el formulario views/quizes/show.ejs para añadir el código de mostrar los comentarios sólo si se está autenticado y el botón de autenticar
+
+Modifico bin/www para añadir SSL
+
+Pruebo con foreman start
+
+hago git add . para añadir los ficheros modificados
+
+Genero una nueva versión en la rama master con git commit -m "19 - HTTP Seguro"
+
+Subo la versión a gitHub con git push origin master
+
+Subo la versión a Heroku con git push heroku master
+
+Ejercicio P2P-9: Auto logout de sesion
+
+Modifico app.js para añadir el middleware app.use para controlar el log out de sesion
+
+Pruebo con foreman start
+
+hago git add . para añadir los ficheros modificados
+
+Genero una nueva versión en la rama master con git commit -m "Ejercicio P2P-9: Auto logout"
+
+Subo la versión a gitHub con git push origin master
+
+Subo la versión a Heroku con git push heroku master
+
+Ejercicio P2P-9: Estadísticas
+
+Modifico views/layout.ejs para añadir el enlace a estadísticas
+
+Modifico routes/index.js para añadir las rutas a statistics
+
+Creo fichero views/quizes/statistics.ejs para mostrar las estadísticas generales
+
+Creo fichero controllers/statsController.js para controlar las peticiones de estadísticas y obtener los datos
+
+Añado onDelete: 'cascade' en models.js para el borrado de comentarios en cascada
 
 Lo puebo con foreman antes de darlo por bueno.
 
-Hago git add . y git commit -m "Ejericio P2P-8" para actualizar la rama master
+Hago git add . y git commit -m "Ejercicio P2P-9: Estadisticas" para actualizar la rama master
+
+Hago un reset de la base de datos de Heroku.
 
 Lo subo a github con git push -u origin master.
 
 Lo subo a heroku con git push heroku master.
 
-Hago un reset de la base de datos de Heroku para borrar las preguntas que no tenían tema.
-
 Añado este README.md al proyecto con git add . y lo vuelvo a subir ea GitHub con git commit -m "añado README.md" y git push -u origin master.
-
